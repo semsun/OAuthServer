@@ -29,8 +29,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.semsun.oauth.core.entity.AuthorizeCode;
+import com.semsun.oauth.core.entity.SessionInfo;
 import com.semsun.oauth.core.service.ClientService;
 import com.semsun.oauth.core.service.OAuthService;
+import com.semsun.oauth.core.service.SessionService;
 import com.semsun.oauth.core.utils.Constants;
 
 @Controller
@@ -43,6 +45,10 @@ public class AuthorizeController {
 	@Autowired
     @Qualifier("clientService")
 	private ClientService clientService;
+	
+	@Autowired
+	@Qualifier("sessionService")
+	private SessionService sessionService;
 	
 	@RequestMapping("/authorize")
 	public Object authorize(Model model, HttpServletRequest request) throws URISyntaxException, OAuthSystemException {
@@ -61,16 +67,27 @@ public class AuthorizeController {
 				return new ResponseEntity(response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
 			}
 			
-			Subject subject = SecurityUtils.getSubject();
+//			Subject subject = SecurityUtils.getSubject();
+//			// 如果用户没有登录，跳转到登陆页面
+//			if(!subject.isAuthenticated()) {
+//				if(!login(subject, request)) {//登录失败时跳转到登陆页面
+//					model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
+//					return "oauth2login";
+//				}
+//			}
+//			
+//			String username = (String)subject.getPrincipal();
+			
+			// 登陆判断
+			SessionInfo sessionInfo = sessionService.getSessionInfo();
 			// 如果用户没有登录，跳转到登陆页面
-			if(!subject.isAuthenticated()) {
-				if(!login(subject, request)) {//登录失败时跳转到登陆页面
-					model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
-					return "oauth2login";
-				}
+			if( !sessionInfo.isLogin() ) {
+				model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
+				return "oauth2login";
 			}
 			
-			String username = (String)subject.getPrincipal();
+			String username = sessionInfo.getUserName();
+			
 			// 生成授权码
 			String authorizationCode = null;
 			

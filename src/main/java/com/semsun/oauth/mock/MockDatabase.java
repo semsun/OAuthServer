@@ -106,11 +106,11 @@ public class MockDatabase {
 	public List<Client> selectAll(Client data) {
 		List<Client> ret = new ArrayList<Client>();
 		for( Client client : clientTable.values() ) {
-			if( !client.getClientId().isEmpty() ) {
+			if( null != data.getClientId() && !data.getClientId().isEmpty() ) {
 				if( client.getClientId().equals(data.getClientId()) ) {
 					ret.add(client);
 				}
-			} else if( !client.getClientSecret().isEmpty() ) {
+			} else if( null != data.getClientSecret() && !data.getClientSecret().isEmpty() ) {
 				if( client.getClientSecret().equals(data.getClientSecret()) ) {
 					ret.add(client);
 				}

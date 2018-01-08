@@ -75,5 +75,39 @@
     </dependency> -->
 	<!-- shiro end -->
 	
+	
+	<!-- JSP支持 begin -->
+    <!--配置servlet
+    <dependency>  
+      <groupId>javax.servlet</groupId>  
+      <artifactId>javax.servlet-api</artifactId>  
+    </dependency>  -->  
+
+    <!--配置jsp jstl的支持
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+    </dependency>  -->
+
+    <!--添加对tomcat的支持
+    <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-tomcat</artifactId>
+     <scope>provided</scope>
+    </dependency>   -->  
+
+    <!--对jsp的支持
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+    </dependency> -->
+	<!-- JSP支持 end -->
+	
+	<!-- thymeleaf(Controller Html映射) begin -->
+	<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+	</dependency>
+	<!-- thymeleaf(Controller Html映射) end -->
   </dependencies>
 </project>

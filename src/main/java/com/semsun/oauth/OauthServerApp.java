@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 //import org.springframework.context.annotation.ComponentScan;
 
 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 //@ComponentScan(basePackages="com.semsun.oauth")
+@ServletComponentScan(basePackages="com.semsun.oauth.profit")
 public class OauthServerApp 
 {
     public static void main( String[] args )

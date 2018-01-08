@@ -1,0 +1,15 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Login</title>
+</head>
+<body>
+	<p th:text="'ClientId: ' + ${client.clientId} + ' Need Login!'" />
+	<form action="j_spring_security_check" method="POST">
+		<input type="text" name="username" th:value="${client.clientName}"/>
+		<input type="text" name="password"/>
+		<input type="submit" value="Submit"/>
+	</form>
+</body>
+</html>

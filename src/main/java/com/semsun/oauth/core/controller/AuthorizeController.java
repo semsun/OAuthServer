@@ -83,7 +83,7 @@ public class AuthorizeController {
 			// 如果用户没有登录，跳转到登陆页面
 			if( !sessionInfo.isLogin() ) {
 				model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
-				return "oauth2login";
+				return "login";
 			}
 			
 			String username = sessionInfo.getUserName();

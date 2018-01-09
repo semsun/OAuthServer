@@ -2,11 +2,15 @@ package com.semsun.oauth;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 //import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
 
 
 /**
@@ -28,4 +32,13 @@ public class OauthServerApp
         app.run(args);
         System.out.println( "-------------------- OAuth Server Started ------------------" );
     }
+    
+	@Bean
+	public EmbeddedServletContainerFactory servletContainer() {
+		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+		factory.setPort(8080);
+		factory.setSessionTimeout(10, TimeUnit.MINUTES);
+//		factory.addErrorPages( new ErrorPage(HttpStatus.NOT_FOUND, "/notfound.html") );
+		return factory;
+	}
 }

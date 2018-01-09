@@ -1,6 +1,7 @@
 package com.semsun.oauth.profit.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,7 +32,9 @@ public class LoginController {
 	
 	@RequestMapping("login")
 	@ResponseBody
-	public String login(HttpServletRequest request, String backUrl) {
+	public String login(HttpServletRequest request, HttpServletResponse response, String backUrl) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
 		if( null == backUrl || backUrl.isEmpty() ) return "0";
 		SessionInfo session = sessionService.getSessionInfo();

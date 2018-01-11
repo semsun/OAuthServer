@@ -35,6 +35,13 @@
       <artifactId>spring-boot-starter-web</artifactId>  
     </dependency>
     
+    <!-- spring-boot的tomcat启动的war包 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+	</dependency>
+    
     <dependency>
 	    <groupId>org.apache.oltu.oauth2</groupId>
 	    <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>

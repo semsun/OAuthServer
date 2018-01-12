@@ -116,5 +116,34 @@
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
 	</dependency>
 	<!-- thymeleaf(Controller Html映射) end -->
+	
+	<!-- Redis begin -->
+	<!--spring redis-->
+	<dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+        </exclusion>
+      </exclusions>
+	</dependency>
+	
+	<dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.7.2</version>
+	</dependency>
+	<!-- Redis end -->
+	
+	<!-- fastjson begin -->
+	<dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.37</version>
+    </dependency>
+	<!-- fastjson end -->
+
   </dependencies>
 </project>

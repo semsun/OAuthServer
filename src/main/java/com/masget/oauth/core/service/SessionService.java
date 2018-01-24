@@ -1,6 +1,6 @@
 package com.masget.oauth.core.service;
 
-import com.semsun.oauth.core.entity.SessionInfo;
+import com.masget.oauth.core.entity.SessionInfo;
 
 public interface SessionService {
 

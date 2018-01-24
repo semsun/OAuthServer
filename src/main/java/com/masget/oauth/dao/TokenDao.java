@@ -1,6 +1,6 @@
 package com.masget.oauth.dao;
 
-import com.semsun.oauth.core.entity.Token;
+import com.masget.oauth.core.entity.Token;
 
 public interface TokenDao {
 

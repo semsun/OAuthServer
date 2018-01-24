@@ -3,9 +3,9 @@ package com.masget.oauth.mock.db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.semsun.oauth.core.entity.AuthorizeCode;
-import com.semsun.oauth.dao.AuthorizeCodeDao;
-import com.semsun.oauth.mock.MockDatabase;
+import com.masget.oauth.core.entity.AuthorizeCode;
+import com.masget.oauth.dao.AuthorizeCodeDao;
+import com.masget.oauth.mock.MockDatabase;
 
 @Component("authorizeCodeDao")
 public class MockAuthorizeCodeDao implements AuthorizeCodeDao {

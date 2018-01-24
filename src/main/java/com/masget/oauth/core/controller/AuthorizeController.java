@@ -28,12 +28,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.semsun.oauth.core.entity.AuthorizeCode;
-import com.semsun.oauth.core.entity.SessionInfo;
-import com.semsun.oauth.core.service.ClientService;
-import com.semsun.oauth.core.service.OAuthService;
-import com.semsun.oauth.core.service.SessionService;
-import com.semsun.oauth.core.utils.Constants;
+import com.masget.oauth.core.entity.AuthorizeCode;
+import com.masget.oauth.core.entity.SessionInfo;
+import com.masget.oauth.core.service.ClientService;
+import com.masget.oauth.core.service.OAuthService;
+import com.masget.oauth.core.service.SessionService;
+import com.masget.oauth.core.utils.Constants;
 
 @Controller
 public class AuthorizeController {

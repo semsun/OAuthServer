@@ -1,7 +1,7 @@
 package com.masget.oauth.core.service;
 
-import com.semsun.oauth.core.entity.AuthorizeCode;
-import com.semsun.oauth.core.entity.Token;
+import com.masget.oauth.core.entity.AuthorizeCode;
+import com.masget.oauth.core.entity.Token;
 
 public interface OAuthService {
 	/**

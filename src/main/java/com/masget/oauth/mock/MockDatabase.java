@@ -9,10 +9,10 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
-import com.semsun.oauth.core.entity.AuthorizeCode;
-import com.semsun.oauth.core.entity.Client;
-import com.semsun.oauth.core.entity.Token;
-import com.semsun.oauth.core.entity.User;
+import com.masget.oauth.core.entity.AuthorizeCode;
+import com.masget.oauth.core.entity.Client;
+import com.masget.oauth.core.entity.Token;
+import com.masget.oauth.core.entity.User;
 
 @Service
 public class MockDatabase {

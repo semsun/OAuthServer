@@ -3,9 +3,9 @@ package com.masget.oauth.mock.db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.semsun.oauth.core.entity.Token;
-import com.semsun.oauth.dao.TokenDao;
-import com.semsun.oauth.mock.MockDatabase;
+import com.masget.oauth.core.entity.Token;
+import com.masget.oauth.dao.TokenDao;
+import com.masget.oauth.mock.MockDatabase;
 
 @Component("tokenDao")
 public class MockTokenDao implements TokenDao {

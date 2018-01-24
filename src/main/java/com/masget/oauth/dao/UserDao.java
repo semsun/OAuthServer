@@ -2,7 +2,7 @@ package com.masget.oauth.dao;
 
 import java.util.List;
 
-import com.semsun.oauth.core.entity.User;
+import com.masget.oauth.core.entity.User;
 
 public interface UserDao {
 	

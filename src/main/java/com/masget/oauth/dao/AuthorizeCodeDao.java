@@ -1,6 +1,6 @@
 package com.masget.oauth.dao;
 
-import com.semsun.oauth.core.entity.AuthorizeCode;
+import com.masget.oauth.core.entity.AuthorizeCode;
 
 public interface AuthorizeCodeDao {
 

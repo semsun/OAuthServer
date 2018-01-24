@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.semsun.oauth.core.entity.Client;
-import com.semsun.oauth.dao.ClientDao;
-import com.semsun.oauth.mock.MockDatabase;
+import com.masget.oauth.core.entity.Client;
+import com.masget.oauth.dao.ClientDao;
+import com.masget.oauth.mock.MockDatabase;
 
 @Component("clientDao")
 public class MockClientDao implements ClientDao {

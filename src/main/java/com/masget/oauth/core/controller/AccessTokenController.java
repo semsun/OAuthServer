@@ -24,10 +24,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.semsun.oauth.core.entity.Token;
-import com.semsun.oauth.core.service.OAuthService;
-import com.semsun.oauth.core.service.UserService;
-import com.semsun.oauth.core.utils.Constants;
+import com.masget.oauth.core.entity.Token;
+import com.masget.oauth.core.service.OAuthService;
+import com.masget.oauth.core.service.UserService;
+import com.masget.oauth.core.utils.Constants;
 
 
 @Controller

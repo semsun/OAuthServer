@@ -17,6 +17,14 @@ public class MasgetUserService implements UserService {
 	@Qualifier("userDao")
 	private UserDao userDao;
 
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
 	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
@@ -69,6 +77,8 @@ public class MasgetUserService implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		// TODO Auto-generated method stub
+		if( null == username || username.isEmpty() ) return null;
+		
 		User param = new User();
 		param.setUsername(username);
 		List<User> list = userDao.selectAll(param);

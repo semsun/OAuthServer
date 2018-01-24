@@ -48,6 +48,7 @@
     </bean>
     <!-- Redis配置 end -->
     
+    <import resource="oauth-core-config.xml" />
     <import resource="spring-config-shiro.xml"></import>
     <context:component-scan base-package="com.masget.oauth.mock, com.masget.oauth.core, com.masget.oauth.profit, com.masget.oauth.profit.masget.realm"></context:component-scan>
 </beans>

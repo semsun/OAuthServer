@@ -15,6 +15,14 @@ public class MockUserDao implements UserDao {
 	@Autowired
 	private MockDatabase db;
 
+	public MockDatabase getDb() {
+		return db;
+	}
+
+	public void setDb(MockDatabase db) {
+		this.db = db;
+	}
+
 	@Override
 	public void insert(User data) {
 		db.insert(data);

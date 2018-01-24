@@ -38,7 +38,11 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	@Override
 	public V put(K key, V value) throws CacheException {
 		// TODO Auto-generated method stub
-		redisTemplate.opsForValue().set(key, value, this.expireTime, TimeUnit.SECONDS);
+		if( this.expireTime == 0 ) {
+			redisTemplate.opsForValue().set(key, value);
+		} else {
+			redisTemplate.opsForValue().set(key, value, this.expireTime, TimeUnit.SECONDS);
+		}
 		return value;
 	}
 

@@ -3,6 +3,9 @@ package com.masget.oauth.profit.masget.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -28,9 +31,9 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("login_action")
 	@ResponseBody
-	public String login(HttpServletRequest request, HttpServletResponse response, String backUrl) {
+	public String login_action(HttpServletRequest request, HttpServletResponse response, String backUrl) {
 		
 //		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
@@ -39,6 +42,28 @@ public class LoginController {
 		session.setLogin(true);
 		
 		return backUrl;
+	}
+	
+	@RequestMapping("login")
+	public String login(Model model, HttpServletRequest request) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		model.addAttribute("test", "testLogin");
+		
+		return "login";
+	}
+	
+	@RequestMapping("login/auth")
+	public String doLogin(String username, String password) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.login(token);
+		
+		return "index";
 	}
 
 }

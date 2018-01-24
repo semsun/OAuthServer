@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 //@ComponentScan(basePackages="com.semsun.oauth")
-@ServletComponentScan(basePackages="com.semsun.oauth.profit")
+//@ServletComponentScan(basePackages="com.semsun.oauth.profit")
 public class OauthServerApp extends SpringBootServletInitializer
 {
 	

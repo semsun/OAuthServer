@@ -17,7 +17,6 @@
     http://mybatis.org/schema/mybatis-spring
     http://mybatis.org/schema/mybatis-spring.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
-    <context:component-scan base-package="com.masget.oauth.mock, com.masget.oauth.core, com.masget.oauth.profit, com.masget.redis.shrio"></context:component-scan>
     
     <!-- Redis配置 begin -->
     <context:property-placeholder location="classpath:redis.properties" />
@@ -49,4 +48,6 @@
     </bean>
     <!-- Redis配置 end -->
     
+    <import resource="spring-config-shiro.xml"></import>
+    <context:component-scan base-package="com.masget.oauth.mock, com.masget.oauth.core, com.masget.oauth.profit, com.masget.oauth.profit.masget.realm"></context:component-scan>
 </beans>

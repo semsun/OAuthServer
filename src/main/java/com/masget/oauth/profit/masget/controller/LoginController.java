@@ -55,13 +55,37 @@ public class LoginController {
 	}
 	
 	@RequestMapping("login/auth")
-	public String doLogin(String username, String password) {
+	public String doLogin(Model model, String username, String password) {
 		
 //		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.login(token);
+		
+		model.addAttribute("userName", (String)currentUser.getPrincipal());
+		
+		return "index";
+	}
+	
+	@RequestMapping("loginout")
+	public String loginOut(Model model, HttpServletRequest request) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
+		
+		return "login";
+	}
+	
+	@RequestMapping("index")
+	public String index(Model model, HttpServletRequest request) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		Subject currentUser = SecurityUtils.getSubject();
+		model.addAttribute("userName", currentUser.getPrincipal());
 		
 		return "index";
 	}

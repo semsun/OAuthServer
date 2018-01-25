@@ -1,11 +1,16 @@
 package com.masget.oauth.profit.masget.controller;
 
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.SessionKey;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.session.mgt.WebSessionKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -55,15 +60,19 @@ public class LoginController {
 	}
 	
 	@RequestMapping("login/auth")
-	public String doLogin(Model model, String username, String password) {
+	public String doLogin(Model model, HttpServletRequest request, String username, String password) {
 		
 //		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		Subject currentUser = SecurityUtils.getSubject();
-		currentUser.login(token);
 		
-		model.addAttribute("userName", (String)currentUser.getPrincipal());
+		currentUser.getSession().setAttribute("SessionValue", "SessionValue");
+		currentUser.login(token);
+
+		String sessionId = request.getSession().getId();
+		model.addAttribute("userName", currentUser.getPrincipal());
+		model.addAttribute("sessionId", sessionId);
 		
 		return "index";
 	}
@@ -85,7 +94,21 @@ public class LoginController {
 //		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 		Subject currentUser = SecurityUtils.getSubject();
-		model.addAttribute("userName", currentUser.getPrincipal());
+		model.addAttribute("userName", currentUser.getSession().getAttribute("SessionValue"));
+		
+		return "index";
+	}
+	
+	@RequestMapping("session")
+	public String testSession(Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+//		response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		SessionKey key = new WebSessionKey("0c126e8f-e836-4d2d-8fa9-5a0d9bca551e", request, response);
+		Session session = SecurityUtils.getSecurityManager().getSession(key);
+		
+		model.addAttribute("userName", session.getAttribute("username"));
+		model.addAttribute("sessionId", session.getId());
 		
 		return "index";
 	}

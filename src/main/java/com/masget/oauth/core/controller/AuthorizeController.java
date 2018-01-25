@@ -67,27 +67,27 @@ public class AuthorizeController {
 				return new ResponseEntity(response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
 			}
 			
-//			Subject subject = SecurityUtils.getSubject();
-//			// 如果用户没有登录，跳转到登陆页面
-//			if(!subject.isAuthenticated()) {
-//				if(!login(subject, request)) {//登录失败时跳转到登陆页面
-//					model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
-//					return "oauth2login";
-//				}
-//			}
-//			
-//			String username = (String)subject.getPrincipal();
-			
-			// 登陆判断
-			SessionInfo sessionInfo = sessionService.getSessionInfo();
+			Subject subject = SecurityUtils.getSubject();
 			// 如果用户没有登录，跳转到登陆页面
-			if( !sessionInfo.isLogin() ) {
-				model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
-				model.addAttribute("backUrl", String.format("%s?%s", request.getRequestURL(), request.getQueryString()));
-				return "login";
+			if(!subject.isAuthenticated()) {
+				if(!login(subject, request)) {//登录失败时跳转到登陆页面
+					model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
+					return "oauth2login";
+				}
 			}
 			
-			String username = sessionInfo.getUserName();
+			String username = (String)subject.getPrincipal();
+			
+//			// 登陆判断
+//			SessionInfo sessionInfo = sessionService.getSessionInfo();
+//			// 如果用户没有登录，跳转到登陆页面
+//			if( !sessionInfo.isLogin() ) {
+//				model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
+//				model.addAttribute("backUrl", String.format("%s?%s", request.getRequestURL(), request.getQueryString()));
+//				return "login";
+//			}
+//			
+//			String username = sessionInfo.getUserName();
 			
 			// 生成授权码
 			String authorizationCode = null;

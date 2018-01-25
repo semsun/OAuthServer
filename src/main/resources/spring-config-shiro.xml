@@ -112,6 +112,7 @@
                 /authorize=anon
                 /accessToken=anon
                 /userInfo=anon
+                /session=anon
 
                 /** = user
             </value>

@@ -14,12 +14,18 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	
 	private long expireTime = DEFAULT_EXPIRE_TIME;
 	
-	private RedisTemplate<K, V> redisTemplate = null;
+	private RedisTemplate<String, V> redisTemplate = null;
 	
-	public RedisCache(long expireTime, RedisTemplate<K, V> redisTemplate) {
+	private String cacheName = "default";
+	
+	public RedisCache(String cacheName, long expireTime, RedisTemplate<String, V> redisTemplate) {
 		super();
 		this.expireTime = expireTime;
 		this.redisTemplate = redisTemplate;
+		
+		if( null != cacheName && !cacheName.isEmpty() ) {
+			this.cacheName = cacheName;
+		}
 	}
 
 	/**
@@ -29,7 +35,8 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	@Override
 	public V get(K key) throws CacheException {
 		// TODO Auto-generated method stub
-		return redisTemplate.opsForValue().get(key);
+		String mKey = String.format( "%s_%s", cacheName, String.valueOf(key) );
+		return redisTemplate.opsForValue().get(mKey);
 	}
 
 	/**
@@ -38,10 +45,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	@Override
 	public V put(K key, V value) throws CacheException {
 		// TODO Auto-generated method stub
+		String mKey = String.format( "%s_%s", cacheName, String.valueOf(key) );
+		
 		if( this.expireTime == 0 ) {
-			redisTemplate.opsForValue().set(key, value);
+			redisTemplate.opsForValue().set(mKey, value);
 		} else {
-			redisTemplate.opsForValue().set(key, value, this.expireTime, TimeUnit.SECONDS);
+			redisTemplate.opsForValue().set(mKey, value, this.expireTime, TimeUnit.SECONDS);
 		}
 		return value;
 	}
@@ -52,8 +61,10 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	@Override
 	public V remove(K key) throws CacheException {
 		// TODO Auto-generated method stub
-		V v = redisTemplate.opsForValue().get(key);
-		redisTemplate.opsForValue().getOperations().delete(key);
+		String mKey = String.format( "%s_%s", cacheName, String.valueOf(key) );
+		
+		V v = redisTemplate.opsForValue().get(mKey);
+		redisTemplate.opsForValue().getOperations().delete(mKey);
 		return v;
 	}
 

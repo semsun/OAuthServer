@@ -106,7 +106,7 @@
             <value>
                 / = anon
                 /login/auth = anon
-                /login = authc
+                /login = anon
                 /logout = logout
 
                 /authorize=anon

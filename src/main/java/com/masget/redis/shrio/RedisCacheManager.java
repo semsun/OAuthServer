@@ -14,7 +14,7 @@ public class RedisCacheManager implements CacheManager {
 	@Override
 	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
 		// TODO Auto-generated method stub
-		return new RedisCache<K, V>(RedisCache.DEFAULT_EXPIRE_TIME, redisTemplate);
+		return new RedisCache<K, V>(name, RedisCache.DEFAULT_EXPIRE_TIME, redisTemplate);
 	}
 
 	public RedisTemplate getRedisTemplate() {
